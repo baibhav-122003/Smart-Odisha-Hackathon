@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- component -->
-<div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+<div class="min-h-screen p-6 bg-teal-700 flex items-center justify-center bg-[url('./images/signup-background.jpg')] bg-cover bg-center bg-no-repeat bg-blend-screen bg-scroll">
     <div class="container max-w-screen-lg mx-auto">
       <div>
         <h2 class="font-semibold text-xl text-gray-600">Sign-Up Form</h2>
@@ -50,6 +50,11 @@
                 <div class="md:col-span-5">
                   <label for="email">Email Address</label>
                   <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                </div>
+
+                <div class="md:col-span-5">
+                  <label for="email">Password</label>
+                  <input type="password" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="********" />
                 </div>
   
                 <div class="md:col-span-3">
@@ -107,8 +112,9 @@
                 </div>
         
                 <div class="md:col-span-5 text-right">
-                  <div class="inline-flex items-end">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                  <div class="inline-flex space-x-4 items-end">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Submit</button>
+                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" href="./login.html">Back</a>
                   </div>
                 </div>
   
