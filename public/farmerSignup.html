@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap" rel="stylesheet">
     <title>Sign Up Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
     <link rel="stylesheet" href="main.css" />
 </head>
 <body>
@@ -25,7 +28,7 @@
               <p>Please fill out all the fields.</p>
             </div>
 
-                <form autocomplete="off" onsubmit="signup(event)">
+                <form>
                   <label for="full_name">Full Name</label>
                   <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
 
@@ -61,7 +64,7 @@
   
                   <label for="zipcode">Pin Code</label>
                   <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
-                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Submit</button>
+                  <button type="submit" id="sub_btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Submit</button>
                 </form>
         
                 <div class="md:col-span-5 text-right pt-8">
@@ -79,5 +82,128 @@
 
     </div>
   </div>
+
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhpmoWHY24_GXbEEshnOwChfoABzu2DtE",
+      authDomain: "smartodishahackathon-ac6b3.firebaseapp.com",
+      databaseURL: "https://smartodishahackathon-ac6b3-default-rtdb.firebaseio.com",
+      projectId: "smartodishahackathon-ac6b3",
+      storageBucket: "smartodishahackathon-ac6b3.appspot.com",
+      messagingSenderId: "74474433499",
+      appId: "1:74474433499:web:90be9ceca5b5dba00c55fe"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, set, child, get }
+      from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+
+    const db = getDatabase();
+
+
+    const name = document.getElementById("full_name");
+    const mobile = document.getElementById("mobile");
+    const email = document.getElementById("email");
+    const pass = document.getElementById("password");
+    const aadhaar = document.getElementById("aadhaar");
+    const pan = document.getElementById("pan");
+    const account = document.getElementById("account");
+    const ifsc = document.getElementById("ifsc");
+    const addr = document.getElementById("address");
+    const city = document.getElementById("city");
+    const state = document.getElementById("state");
+    const pin = document.getElementById("zipcode");
+
+    function validation(){
+      // let nameregex = /^[a-zA-Z]+$/;
+      // let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/;
+      let mobileregex = /^[0-9]+$/;
+      let aadhaarregex = /^[0-9]+$/;
+      let panregex = /^[A-Z0-9]+$/;
+      let accountregex = /^[0-9]+$/;
+      let pinregex = /^[0-9]{6,6}$/;
+
+      // if (!nameregex.test(name.value)){
+      //   alert("The name should only contain alphabets!");
+      //   return false;
+      // }
+      // if (!emailregex.test(email.value)){
+      //   alert("The email address is not supported!");
+      //   return false;
+      // }
+      if (!mobileregex.test(mobile.value)){
+        alert("The mobile no. should only contain numbers!");
+        return false;
+      }
+      if (!aadhaarregex.test(aadhaar.value)){
+        alert("The Aadhaar no. should only contain numbers!");
+        return false;
+      }
+      if (!panregex.test(pan.value)){
+        alert("The Pan no. should only contain numbers!");
+        return false;
+      }
+      if (!accountregex.test(account.value)){
+        alert("The Account no. should only contain numbers!");
+        return false;
+      }
+      if (!pinregex.test(pin.value)){
+        alert("The pin is not correct!");
+        return false;
+      }
+
+      return true;
+    }
+
+    function RegisterUser(){
+      if (!validation()){
+        return;
+      };
+      const dbRef = ref(db);
+
+      get(child(dbRef, "UsersList/"+ name.value)).then((snapshot)=>{
+        if (snapshot.exists()){
+          alert("Account Already Exists!");
+        }
+        else{
+          set(ref(db, "UsersList/"+ name.value),
+          {
+              fullname: name.value,
+              mobile: mobile.value,
+              email: email.value,
+              password: pass.value,
+              aadhaar: aadhaar.value,
+              pan: pan.value,
+              account: account.value,
+              ifsc: ifsc.value,
+              address: addr.value,
+              city: city.value,
+              state: state.value,
+              pin: pin.value,
+          })
+          .then(()=>{
+              alert("User added successfully!");
+          })
+          .catch((error)=>{
+              alert("error"+ error);
+          })
+        }
+
+      });
+    }
+
+    document.querySelector("button").addEventListener("click",RegisterUser);
+
+
+  </script>
 </body>
 </html>
