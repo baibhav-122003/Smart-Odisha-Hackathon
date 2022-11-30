@@ -51,7 +51,8 @@ function register () {
       account_no : account_no,
       ifsc_code : ifsc_code,
       occupation : occupation,
-      last_login : Date.now()
+      last_login : Date.now(),
+      status: 0
     }
 
     // Push to Firebase Database
