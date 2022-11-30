@@ -199,3 +199,8 @@ input {
     border-color: var(--accentFg);
     background-color: var(--accentFg);
   }
+
+  .close {
+    left: 61%;
+    position: absolute;
+  }
