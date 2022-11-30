@@ -14,6 +14,16 @@
     </head>
     <body>
         <div id="content_container">
+            <div id="google_translate_element" class="absolute"></div>
+            <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <script>
+                function googleTranslateElementInit(){
+                new google.translate.TranslateElement(
+                    {pageLanguage:'en'},
+                    'google_translate_element'
+                );
+                }
+            </script>
             <div id="form_container">
                 <div id="form_header_container">
                     <h2 id="form_header"> Login + Signup </h2>
