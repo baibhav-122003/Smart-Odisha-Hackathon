@@ -20,8 +20,7 @@ var reqoccupation = 'null';
 document.querySelector('.login').addEventListener('click',function(){
     reqemail = document.getElementById('email').value;
     reqname = document.getElementById('full_name').value;
-    reqoccupation = document.getElementById('occupation').value;
-    console.log(reqoccupation);
+    // reqoccupation = document.getElementById('occupation').value;
 });
 
 // Fetching Data
@@ -59,8 +58,6 @@ function register () {
     alert('One or More Extra Fields is Outta Line!!')
     return
   }
-
-  var authentication = 0;
  
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password)
@@ -98,7 +95,7 @@ function register () {
   })
 }
 
-
+var authentication = 0;
 // Set up our login function
 function login () {
   // Get all our input fields
@@ -129,18 +126,18 @@ function login () {
     database_ref.child('users/' + user.uid).update(user_data)
 
     // DOne
-    alert('User Logged In!!');
+    // alert('User Logged In!!');
     authentication = 1;
     if (reqoccupation == 'farmer' && authentication == 1){
-      window.location.replace("./farmerDashboard.html");
+      window.location.href = "./farmerDashboard.html";
     }
 
     else if (reqoccupation == 'insuranceAgent' && authentication == 1){
-      window.location.replace("./insuranceDatabase.html");
+      window.location.href = "./insuranceDatabase.html";
     }
 
     else if (reqoccupation == 'governmentOfficial' && authentication == 1){
-      window.location.replace("./farmerDatabase.html");
+      window.location.href = "./farmerDatabase.html";
     }
 
   })
