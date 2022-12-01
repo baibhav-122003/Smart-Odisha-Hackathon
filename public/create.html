@@ -121,12 +121,14 @@
                                 <td>437783472523489</td>
                                 <td><input type="text" id="number" value="0"/></td>
                                 <td>
-                                <div class="btn9">
-                                    <button id="btn5" onclick="incrementValue()" value="increase">Pending</button>
-                                    <button id="btn6" onclick="incrementValue()" value="increase">Approved</button>
-                                    <button id="btn7" onclick="incrementValue()" value="increase">Money Released</button>
-                                    <button id="btn8" onclick="incrementValue()" value="increase">Money Received</button>
-                                </div>
+                                    <label for="cars">Choose Status</label>
+
+                                    <select name="status" id="status">
+                                      <option value="1">Pending</option>
+                                      <option value="2">Approved</option>
+                                      <option value="3">Money Released</option>
+                                      <option value="4">Money Received</option>
+                                    </select>
                             </td>
                             </tr>
 
@@ -137,10 +139,14 @@
                                 <td><input type="text" id="number" value="0"/></td>
                             <td>
 
-                                <button id="btn2 onclick="incrementValue()" value="increase">Pending</button>
-                                <button id="btn2 onclick="incrementValue()" value="increase">Approved</button>
-                                <button id="btn2 onclick="incrementValue()" value="increase">Money Released</button>
-                                <button id="btn2 onclick="incrementValue()" value="increase">Money Received</button>
+                                <label for="cars">Choose Status</label>
+
+                                    <select name="status">
+                                      <option value="1">Pending</option>
+                                      <option value="2">Approved</option>
+                                      <option value="3">Money Released</option>
+                                      <option value="4">Money Received</option>
+                                    </select>
                            </td>
                             
                             </tr>
@@ -152,10 +158,14 @@
                                 <td><input type="text" id="number" value="0"/></td>
                                 <td>
 
-                                    <button id="btn3 onclick="incrementValue()" value="increase">Pending</button>
-                                    <button id="btn3 onclick="incrementValue()" value="increase">Approved</button>
-                                    <button id="btn3 onclick="incrementValue()" value="increase">Money Released</button>
-                                    <button id="btn3 onclick="incrementValue()" value="increase">Money Received</button>
+                                    <label for="cars">Choose Status</label>
+
+                                    <select name="status">
+                                      <option value="1">Pending</option>
+                                      <option value="2">Approved</option>
+                                      <option value="3">Money Released</option>
+                                      <option value="4">Money Received</option>
+                                    </select>
                                    </td>
                                 </td>
                             </tr>
@@ -166,10 +176,14 @@
                                 <td><input type="text" id="number" value="0"/></td>
                                 <td>
 
-                                        <button id="btn4 onclick="incrementValue()" value="increase">Pending</button>
-                                        <button id="btn4 onclick="incrementValue()" value="increase">Approved</button>
-                                        <button id="btn4 onclick="incrementValue()" value="increase">Money Released</button>
-                                        <button id="btn4 onclick="incrementValue()" value="increase">Money Received</button>
+                                    <label for="cars">Choose Status</label>
+
+                                    <select name="status">
+                                      <option value="1">Pending</option>
+                                      <option value="2">Approved</option>
+                                      <option value="3">Money Released</option>
+                                      <option value="4">Money Received</option>
+                                    </select>
                                    </td>
                                 </td>
                             </tr>
@@ -182,7 +196,8 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/0e8b068c07.js" crossorigin="anonymous"></script>
-    <script src="create.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -190,15 +205,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 
-    <script>
-        function incrementValue()
-        {
-            var value = parseInt(document.getElementById('number').value, 10);
-            value = isNaN(value) ? 0 : value;
-            value++;
-            document.getElementById('number').value = value;
-        }
-    </script>
+    <!-- Our script must be loaded after firebase references -->
+    <script src="./create.js"></script>
 
 </body>
 
