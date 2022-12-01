@@ -19,7 +19,19 @@ var firebaseConfig = {
                 let name = ChildSnapshot.val().full_name;
                   let status = ChildSnapshot.val().status;
                   if (status == 0 && (document.querySelector('.name').textContent == name)){
-                    document.querySelector('.progress-bar').style.width = '10%';
+                    document.querySelector('.progress-bar').style.width = '5%';
+                  }
+                  if (status == 1 && (document.querySelector('.name').textContent == name)){
+                    document.querySelector('.progress-bar').style.width = '25%';
+                  }
+                  if (status == 2 && (document.querySelector('.name').textContent == name)){
+                    document.querySelector('.progress-bar').style.width = '50%';
+                  }
+                  if (status == 3 && (document.querySelector('.name').textContent == name)){
+                    document.querySelector('.progress-bar').style.width = '75%';
+                  }
+                  if (status == 4 && (document.querySelector('.name').textContent == name)){
+                    document.querySelector('.progress-bar').style.width = '100%';
                   }
               }
           );
