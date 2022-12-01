@@ -14,6 +14,31 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth()
 const database = firebase.database()
 
+var reqemail = 'null';
+var reqname = 'null';
+var reqoccupation = 'null';
+document.querySelector('.login').addEventListener('click',function(){
+    reqemail = document.getElementById('email').value;
+    reqname = document.getElementById('full_name').value;
+    reqoccupation = document.getElementById('occupation').value;
+    console.log(reqoccupation);
+});
+
+// Fetching Data
+function fetchAllData(){
+  firebase.database().ref('users').once('value', function(snapshot){
+      snapshot.forEach(
+          function(ChildSnapshot){
+              let email = ChildSnapshot.val().email;
+              if (email == reqemail)
+                reqoccupation = ChildSnapshot.val().occupation;
+          }
+      );
+  });
+}
+
+document.querySelector('.login').addEventListener('click',fetchAllData);
+
 // Set up our register function
 function register () {
   // Get all our input fields
@@ -34,6 +59,8 @@ function register () {
     alert('One or More Extra Fields is Outta Line!!')
     return
   }
+
+  var authentication = 0;
  
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password)
@@ -52,7 +79,8 @@ function register () {
       ifsc_code : ifsc_code,
       occupation : occupation,
       last_login : Date.now(),
-      status: 0
+      status: 0,
+      signin_status : 0
     }
 
     // Push to Firebase Database
@@ -69,6 +97,7 @@ function register () {
     alert(error_message)
   })
 }
+
 
 // Set up our login function
 function login () {
@@ -100,7 +129,19 @@ function login () {
     database_ref.child('users/' + user.uid).update(user_data)
 
     // DOne
-    alert('User Logged In!!')
+    alert('User Logged In!!');
+    authentication = 1;
+    if (reqoccupation == 'farmer' && authentication == 1){
+      window.location.replace("./farmerDashboard.html");
+    }
+
+    else if (reqoccupation == 'insuranceAgent' && authentication == 1){
+      window.location.replace("./insuranceDatabase.html");
+    }
+
+    else if (reqoccupation == 'governmentOfficial' && authentication == 1){
+      window.location.replace("./farmerDatabase.html");
+    }
 
   })
   .catch(function(error) {
