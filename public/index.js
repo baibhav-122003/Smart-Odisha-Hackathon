@@ -133,7 +133,7 @@ function login () {
     }
 
     else if (reqoccupation == 'insuranceAgent' && authentication == 1){
-      window.location.href = "./insuranceDatabase.html";
+      window.location.href = "./create.html";
     }
 
     else if (reqoccupation == 'governmentOfficial' && authentication == 1){
